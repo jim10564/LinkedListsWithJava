@@ -37,34 +37,30 @@ public class StudentRoster {
             Student userStudent = new Student(userStudentID,userFirstName,userLastName,userYear);
             myRoster.addStudentToList(userStudent);
             myRoster.moveStudentsToWaitList();
-            }
+         }
+    
         /**
          * Prints whether Student Object is in Class Roster or is on Wait List.
          * @param in the Scanner to read from.
          */
-
         public void findStudent(Scanner in)
         {
             System.out.println("Enter Student ID to find");
             int userID = in.nextInt();
            myRoster.printUserStudents(userID);
+         }
 
-            }
 
-
-    /**
-     * Takes a user int and calls the drop student methods
+     /**
+     * Takes a user int and calls the drop student methods, to remove the Student from the Class Roster
      * in the StudentRoster class
      * @param in
      */
-
         public void dropStudent(Scanner in)
         {
             System.out.println("Enter Student ID to Drop");
             int userID = in.nextInt();
-            //studentWaitList.dropStudentFromWaitList(userID);
             myRoster.dropStudentFromList(userID);
-
         }
 
     /**
@@ -78,12 +74,10 @@ public class StudentRoster {
         //Driver
         public static void main(String[] args)
         {
-            Scanner in = new Scanner(System.in);
-            StudentRoster sr = new StudentRoster();
-
+           Scanner in = new Scanner(System.in);
+           StudentRoster sr = new StudentRoster();
            System.out.println("Welcome to the CS Student Roster");
            System.out.println("--------------------------------");
-
             boolean done = false;
             while (!done)
             {
@@ -110,5 +104,4 @@ public class StudentRoster {
             System.out.println("Good bye.  Have a nice day!");
             in.close();
         }
-
 }
