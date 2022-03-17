@@ -12,11 +12,10 @@ import java.util.ListIterator;
 
 public class ClassRoster {
 
-    WaitListRoster myWaitList = new WaitListRoster();// WaitList Object
-    private LinkedList<Student> classRoster = new LinkedList<Student>(); //collection of Student objects on class list
-    private LinkedList<Student> studentWaitList = new LinkedList();//collection of Student objects on wait list
+    WaitListRoster myWaitList = new WaitListRoster();
+    private LinkedList<Student> classRoster = new LinkedList<Student>(); 
+    private LinkedList<Student> studentWaitList = new LinkedList();
     ListIterator<Student> classRosterIterator;
-    //ListIterator<Student> studentWaitListIterator;
 
     /**
      * Prints Student Objects in the Class Roster, and Wait List
@@ -69,7 +68,6 @@ public class ClassRoster {
 
     /**
      * Returns the classRoster LinkedList
-     *
      * @return classRoster
      */
     public LinkedList getList() {
@@ -85,9 +83,7 @@ public class ClassRoster {
     }
 
     /**
-     * Removes Student Objects from classRoster
      * Moves Students from Wait List to Class Roster
-     *
      * @param userID, int used to access Student Objects via Student ID
      */
 
@@ -96,28 +92,27 @@ public class ClassRoster {
         while (classRosterIterator.hasNext()) {
             if (userID == classRosterIterator.next().getStudentID())
                 classRosterIterator.remove();
-
         }
-
           if (myWaitList.getWaitList().size()!=0 && classRoster.size() < 5){
                classRoster.add(myWaitList.getFirstStudent());
                myWaitList.getWaitList().removeFirst();
            }
 
-
         myWaitList.dropStudentFromWaitList(userID); }
 
 
         /**
-         * Moves Students to Wait List, when Class Roster is full
+         * Removes a student from the class roster
+         *And adds them to the waitlist, when class roster is full
          */
-
         public void moveStudentsToWaitList () {
             classRosterIterator = classRoster.listIterator();
-            while (classRosterIterator.hasNext()) if (classRoster.indexOf(classRosterIterator.next()) > 4) {
+            while (classRosterIterator.hasNext()) {
+                if (classRoster.indexOf(classRosterIterator.next()) > 4) {
                 myWaitList.addStudentToWaitList(classRosterIterator.previous());
                 classRosterIterator.remove();
             }
+          }
         }
     }
 
